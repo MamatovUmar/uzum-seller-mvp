@@ -15,7 +15,7 @@ const info = ref()
 
 async function getStats() {
   try {
-    const { data } = await useCustomFetch('http://194.35.117.211/v1/parse/orders')
+    const { data } = await useCustomFetch('http://localhost:5000/v1/parse/orders')
     console.log(data)
     return data
   } catch (e) {
