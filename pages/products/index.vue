@@ -82,6 +82,13 @@ const columns = computed<DataTableColumns<Product>>(() => [
     sortOrder: false
   },
   {
+    title: 'Возврат',
+    key: 'quantityReturned',
+    width: 120,
+    sorter: true,
+    sortOrder: false
+  },
+  {
     title: 'Модерация',
     key: 'moderationStatus.title'
   },
@@ -89,9 +96,14 @@ const columns = computed<DataTableColumns<Product>>(() => [
 ])
 
 async function handleSorterChange (sorter: Sorter) {
+  console.log('sorter', sorter, sortOptions)
   if (!loading.value) {
+    if (sortOptions.order === sorter.order && sortOptions.columnKey === sorter.columnKey) {
+      sortOptions.order = sorter.order === 'ascend' ? 'descend' : 'ascend'
+    } else {
+      sortOptions.order = sorter.order
+    }
     sortOptions.columnKey = sorter.columnKey
-    sortOptions.order = sorter.order
     sortOptions.sorter = sorter.sorter
     await query()
   }
@@ -147,6 +159,7 @@ function setLineChart() {
 }
 
 async function query() {
+  console.log('options', sortOptions)
   try {
     const params: GetProductParams = {
       searchQuery: '',
@@ -170,7 +183,7 @@ onMounted(async () => {
   chartLoading.value = true
   await productStore.getProductsStat()
   chartLoading.value = false
-  setLineChart()
+  // setLineChart()
 })
 
 interface Sorter {
@@ -189,14 +202,6 @@ interface Sorter {
       subtitle="A podcast to improve designs"
       @back="router.go(-1)"
     />
-
-    <div class="chart">
-      <n-card>
-        <canvas ref="myChart" height="300px"></canvas>
-      </n-card>
-    </div>
-
-
 
     <n-data-table
       remote

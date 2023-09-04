@@ -39,7 +39,7 @@ function save (e: MouseEvent) {
 </script>
 
 <template>
-  <div class="profile">
+  <div v-if="root.user" class="profile">
     <n-page-header
       title="Профиль"
       @back="router.go(-1)"

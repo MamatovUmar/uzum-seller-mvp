@@ -9,13 +9,13 @@ const { data } = defineProps<{
   data: OrderType[]
 }>()
 
-const orders = computed(() => {
+const orders = computed<OrderType[]>(() => {
   return data.filter((el) => el.amount !== 0)
 })
 
-const labels = computed(() => orders.value.map(el => el.date))
-const profits = computed(() => orders.value.map(el => el.profit))
-const commissions = computed(() => orders.value.map(el => el.commission))
+const labels = computed(() => orders.value.map((el: OrderType) => el.date))
+const profits = computed(() => orders.value.map((el: OrderType) => el.profit))
+const commissions = computed(() => orders.value.map((el: OrderType) => el.commission))
 
 function setChart() {
   if(myLineChart.value) {

@@ -22,7 +22,7 @@ export function useCustomFetch<T> (url: string, options: UseFetchOptions<T> = {}
     onResponseError (ctx) {
       if (ctx.response.status === 401) {
         token.value = null
-        navigateTo('/')
+        navigateTo('/login')
       }
       // @ts-ignore
       console.log(`%c Error: ${ctx.options?.method} ${ctx.options?.key} `, 'background: red', ctx.response._data)

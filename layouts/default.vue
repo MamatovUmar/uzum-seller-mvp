@@ -9,7 +9,7 @@ const root = useRootStore()
 const loading = ref(true)
 
 onMounted(async () => {
-  // await root.fetchUser()
+  await root.fetchUser()
   loading.value = false
 })
 

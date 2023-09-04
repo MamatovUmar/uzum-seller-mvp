@@ -16,36 +16,14 @@ function renderIcon (icon: Component) {
 
 const menuOptions: MenuOption[] = [
   {
+    label: () =>h(RouterLink, { to: '/' }, { default: () =>  'Главная' }),
+    key: 'index',
+    icon: renderIcon(Catalog)
+  },
+  {
     label: () =>h(RouterLink, { to: '/products' }, { default: () =>  'Продукты' }),
     key: 'products',
     icon: renderIcon(Catalog)
-  },
-  {
-    label: () =>h(RouterLink, { to: '/stores' }, { default: () =>  'Магазины' }),
-    key: 'stores',
-    icon: renderIcon(Catalog)
-  },
-  {
-    label: 'Dance Dance Dance',
-    key: 'Dance Dance Dance',
-    icon: renderIcon(Catalog),
-    children: [
-      {
-        label: 'Beverage',
-        key: 'beverage',
-        icon: renderIcon(Catalog)
-      },
-      {
-        label: 'Food',
-        key: 'food',
-        icon: renderIcon(Catalog)
-      },
-      {
-        label: 'The past increases. The future recedes.',
-        key: 'the-past-increases-the-future-recedes',
-        icon: renderIcon(Catalog)
-      }
-    ]
   }
 ]
 </script>
